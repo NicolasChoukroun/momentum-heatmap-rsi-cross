@@ -1,4 +1,4 @@
-# Momentum + Heatmap with RSI Cross (Nikko)
+# Momentum + Heatmap with Hybrid Cross (Nikko)
 
 **Version**: 1.0
 **Author**: Cryptonikkoid
@@ -10,7 +10,7 @@
 
 ## Overview
 
-The *Momentum + Heatmap with RSI Cross* is an advanced visual indicator designed to replace traditional oscillators by merging multiple indicators into one. It combines **Vortex**, **Stochastic**, **RSI**, and **MACD** into a unified, mathematically enhanced momentum signal. This tool highlights trend shifts, potential reversals, and momentum build-up with intuitive visuals and alert signals.
+The *Momentum + Heatmap with Hybrid Cross* is an advanced visual indicator designed to replace traditional oscillators by merging multiple indicators into one. It combines **Vortex**, **Stochastic**, **RSI**, and **MACD** into a unified, mathematically enhanced momentum signal. This tool highlights trend shifts, potential reversals, and momentum build-up with intuitive visuals and alert signals.
 
 The indicator includes:
 
