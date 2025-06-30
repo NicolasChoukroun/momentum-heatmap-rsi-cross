@@ -1,10 +1,3 @@
-# momentum-heatmap-rsi-cross
-This is an experimental momentum tool designed to combine the best of Vortex, MACD, and RSI into a single mathematical formula.
-
-Here’s a **GitHub-ready** version of the **User Manual** for your indicator, without any tables, ready for copy-pasting into a README file:
-
----
-
 # Momentum + Heatmap with RSI Cross (Nikko)
 
 **Version**: 1.0
@@ -136,6 +129,3 @@ If you want cleaner charts with smarter momentum tracking — this tool is built
 
 Let me know if you’d like to generate a [GitHub README](f), a [comparison demo image](f), or [multi-timeframe filtering added](f).
 
----
-
-This version is tailored for **GitHub** without markdown tables and is ready for use.
