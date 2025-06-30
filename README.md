@@ -125,7 +125,5 @@ Unlike using RSI, MACD, or Stochastic separately, this indicator:
 
 If you want cleaner charts with smarter momentum tracking — this tool is built for that.
 
----
 
-Let me know if you’d like to generate a [GitHub README](f), a [comparison demo image](f), or [multi-timeframe filtering added](f).
 
