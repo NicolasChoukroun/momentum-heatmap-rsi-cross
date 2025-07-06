@@ -4,7 +4,7 @@
 // version 1.0
 // https://t.me/cryptonikkoid
 
-indicator("Momentum + Heatmap with RSI Cross (Nikko)", overlay=false)
+indicator("Momentum + Heatmap + Cross Alerts (Nikko)", overlay=false)
 
 // === INPUT PARAMETERS ===
 hideheatmap  = input.bool(false, title="Hide Heatmap")
@@ -16,6 +16,8 @@ rsiLength    = input.int(12, title="RSI Length")
 macdFast     = input.int(4, title="MACD Fast Length")
 macdSlow     = input.int(28, title="MACD Slow Length")
 macdSignal   = input.int(12, title="MACD Signal Smoothing")
+rsishortSmoothing   = input.int(50, title="RSI long Smoothing")
+rsilongSmoothing   = input.int(500, title="RSI short Smoothing")
 
 // === TRUE RANGE FOR VORTEX ===
 tr = math.max(math.max(high - low, math.abs(high - close[1])), math.abs(low - close[1]))
@@ -37,8 +39,8 @@ k = ta.sma(stochRaw, smoothK)
 d = ta.sma(k, smoothD)
 
 // === RSI (normalized 0–1) ===
-rsi = ta.rsi(close, rsiLength) / 100
-rsilong = ta.rsi(close, rsiLength*5) / 500
+rsi = ta.rsi(close, rsiLength) / rsishortSmoothing
+rsilong = ta.rsi(close, rsiLength*5)/rsilongSmoothing
 
 // === MACD ===
 [macdLine, macdSigLine, _] = ta.macd(close, macdFast, macdSlow, macdSignal)
@@ -49,14 +51,14 @@ kHybrid = k * math.exp(rsilong) * (macdTrend >= 0 ? 1 : -1)
 dHybrid = d * math.exp(rsi) * (macdTrend >= 0 ? 1 : -1)
 
 // === HEATMAP BASED ON RSI × VORTEX ===
-rsiVortexRaw = viDiff * rsi
+rsiVortexRaw = (viDiff * rsi)
 rsiVortexNorm = math.min(math.max((rsiVortexRaw + 1) / 2, 0), 1)  // normalize between 0 and 1
 
 // Heatmap colors based on the normalized value
-heatColor = color.from_gradient(rsiVortexNorm, 0, 1, color.rgb(150, 0, 255, 50), color.rgb(0, 127, 253, 10))
+heatColor = color.from_gradient(rsiVortexNorm, 0, 1, color.rgb(255, 0, kHybrid*dHybrid, 50), color.rgb(0, 255, kHybrid*dHybrid, 50))
 bgcolor(hideheatmap?na:heatColor)
 
-// === RSI CROSSOVER DETECTION ===
+// === HYBRID CROSSOVER DETECTION ===
 rsiCrossUp = ta.crossover(kHybrid, dHybrid)  // RSI crosses above RSILong
 rsiCrossDown = ta.crossunder(kHybrid, dHybrid)  // RSILong crosses above RSI
 
